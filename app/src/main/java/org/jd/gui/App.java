@@ -7,6 +7,7 @@
 
 package org.jd.gui;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import org.jd.gui.controller.MainController;
 import org.jd.gui.model.configuration.Configuration;
 import org.jd.gui.service.configuration.ConfigurationPersister;
@@ -47,7 +48,7 @@ public class App {
 
             // Create SwingBuilder, set look and feel
             try {
-                UIManager.setLookAndFeel(configuration.getLookAndFeel());
+                UIManager.setLookAndFeel(new FlatDarculaLaf());
             } catch (Exception e) {
                 configuration.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                 try {

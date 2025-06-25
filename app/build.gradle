@@ -1,6 +1,7 @@
 apply plugin: 'java'
 
 dependencies {
+    implementation 'com.formdev:flatlaf:3.4'
     provided 'com.yuvimasory:orange-extensions:1.3.0'   // OSX support
     compile project(':api')
     runtime project(':services')
