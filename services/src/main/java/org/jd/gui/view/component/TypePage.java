@@ -7,6 +7,7 @@
 package org.jd.gui.view.component;
 
 import org.fife.ui.rsyntaxtextarea.DocumentRange;
+import org.fife.ui.rtextarea.Gutter;
 import org.fife.ui.rtextarea.Marker;
 import org.jd.gui.api.API;
 import org.jd.gui.api.feature.FocusedTypeGettable;
@@ -20,6 +21,7 @@ import org.jd.gui.util.exception.ExceptionUtil;
 import org.jd.gui.util.index.IndexesUtil;
 import org.jd.gui.util.matcher.DescriptorMatcher;
 
+import javax.swing.*;
 import java.awt.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -44,6 +46,20 @@ public abstract class TypePage extends CustomLineNumbersPage implements UriGetta
         // Init attributes
         this.api = api;
         this.entry = entry;
+
+        setBackground(UIManager.getColor("Panel.background"));
+        textArea.setBackground(UIManager.getColor("TextArea.background"));
+        scrollPane.setBackground(UIManager.getColor("ScrollPane.background"));
+        textArea.setForeground(UIManager.getColor("TextArea.foreground"));
+        textArea.setCaretColor(UIManager.getColor("TextArea.caretForeground"));
+        scrollPane.setBorder(UIManager.getBorder("ScrollPane.border"));
+
+        Gutter gutter = scrollPane.getGutter();
+        if (gutter != null) {
+            gutter.setBackground(UIManager.getColor("TextArea.background"));
+            gutter.setForeground(UIManager.getColor("TextArea.foreground"));
+            gutter.setLineNumberColor(UIManager.getColor("TextArea.foreground"));
+        }
     }
 
     @Override

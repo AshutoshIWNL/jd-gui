@@ -32,11 +32,6 @@ public class TextFileTreeNodeFactoryProvider extends FileTreeNodeFactoryProvider
     static {
         // Early class loading
         new Gutter(new RSyntaxTextArea());
-        try {
-            Theme.load(TextFileTreeNodeFactoryProvider.class.getClassLoader().getResourceAsStream("rsyntaxtextarea/themes/eclipse.xml"));
-        } catch (IOException e) {
-            assert ExceptionUtil.printStackTrace(e);
-        }
     }
 
     @Override public String[] getSelectors() {
@@ -69,6 +64,19 @@ public class TextFileTreeNodeFactoryProvider extends FileTreeNodeFactoryProvider
         public Page(Container.Entry entry) {
             this.entry = entry;
             setText(TextReader.getText(entry.getInputStream()));
+            setBackground(UIManager.getColor("Panel.background"));
+            textArea.setBackground(UIManager.getColor("TextArea.background"));
+            textArea.setForeground(UIManager.getColor("TextArea.foreground"));
+            textArea.setCaretColor(UIManager.getColor("TextArea.caretForeground"));
+            scrollPane.setBackground(UIManager.getColor("ScrollPane.background"));
+            scrollPane.setBorder(UIManager.getBorder("ScrollPane.border"));
+
+            Gutter gutter = scrollPane.getGutter();
+            if (gutter != null) {
+                gutter.setBackground(UIManager.getColor("TextArea.background"));
+                gutter.setForeground(UIManager.getColor("TextArea.foreground"));
+                gutter.setLineNumberColor(UIManager.getColor("TextArea.foreground"));
+            }
         }
 
         // --- UriGettable --- //
